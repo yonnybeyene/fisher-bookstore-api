@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Fisher.Bookstore.Data;
 using Microsoft.EntityFrameworkCore;
+using Fisher.Bookstore.Services;
 
 namespace Fisher.Bookstore
 {
@@ -25,6 +26,7 @@ namespace Fisher.Bookstore
             services.AddDbContext<BookstoreContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("BookstoreContext"))
             );
+            services.AddScoped<IBooksRepository, BooksRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
